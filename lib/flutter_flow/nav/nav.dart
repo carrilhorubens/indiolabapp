@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '../../auth/base_auth_user_provider.dart';
 
@@ -77,13 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? PgAddUsersWidget() : PgLoginWidget(),
+          appStateNotifier.loggedIn ? CadastroWidget() : PgLoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? PgAddUsersWidget() : PgLoginWidget(),
+              appStateNotifier.loggedIn ? CadastroWidget() : PgLoginWidget(),
         ),
         FFRoute(
           name: 'pg_login',
@@ -91,24 +92,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgLoginWidget(),
         ),
         FFRoute(
-          name: 'pg_grupo',
-          path: '/pgGrupo',
-          builder: (context, params) => PgGrupoWidget(),
+          name: 'pg_add_user',
+          path: '/pgAddUser',
+          builder: (context, params) => PgAddUserWidget(),
         ),
         FFRoute(
-          name: 'pg_categoria',
-          path: '/pgCategoria',
-          builder: (context, params) => PgCategoriaWidget(),
+          name: 'pg_add_grupo',
+          path: '/pgAddGrupo',
+          builder: (context, params) => PgAddGrupoWidget(),
         ),
         FFRoute(
-          name: 'pg_add_users',
-          path: '/pgAddUsers',
-          builder: (context, params) => PgAddUsersWidget(),
+          name: 'cadastro',
+          path: '/cadastro',
+          builder: (context, params) => CadastroWidget(),
         ),
         FFRoute(
-          name: 'pg_add_usu',
-          path: '/pgAddUsu',
-          builder: (context, params) => PgAddUsuWidget(),
+          name: 'pg_add_categoria',
+          path: '/pgAddCategoria',
+          builder: (context, params) => PgAddCategoriaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
