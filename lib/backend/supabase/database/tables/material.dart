@@ -14,8 +14,8 @@ class MaterialRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => MaterialTable();
 
-  int get id => getField<int>('id')!;
-  set id(int value) => setField<int>('id', value);
+  int get matId => getField<int>('mat_id')!;
+  set matId(int value) => setField<int>('mat_id', value);
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);

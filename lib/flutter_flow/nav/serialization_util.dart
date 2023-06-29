@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 
 import '../../flutter_flow/lat_lng.dart';
@@ -71,9 +70,6 @@ String? serializeParam(
         return uploadedFileToString(param as FFUploadedFile);
       case ParamType.JSON:
         return json.encode(param);
-
-      case ParamType.DataStruct:
-        return param is BaseStruct ? param.serialize() : null;
 
       case ParamType.SupabaseRow:
         return json.encode((param as SupabaseDataRow).data);
@@ -152,16 +148,15 @@ enum ParamType {
   FFPlace,
   FFUploadedFile,
   JSON,
-  DataStruct,
+
   SupabaseRow,
 }
 
 dynamic deserializeParam<T>(
   String? param,
   ParamType paramType,
-  bool isList, {
-  StructBuilder<T>? structBuilder,
-}) {
+  bool isList,
+) {
   try {
     if (param == null) {
       return null;
@@ -174,12 +169,7 @@ dynamic deserializeParam<T>(
       return paramValues
           .where((p) => p is String)
           .map((p) => p as String)
-          .map((p) => deserializeParam<T>(
-                p,
-                paramType,
-                false,
-                structBuilder: structBuilder,
-              ))
+          .map((p) => deserializeParam<T>(p, paramType, false))
           .where((p) => p != null)
           .map((p) => p! as T)
           .toList();
@@ -216,12 +206,20 @@ dynamic deserializeParam<T>(
         switch (T) {
           case UsuariosRow:
             return UsuariosRow(data);
+          case TecnologiaViewRow:
+            return TecnologiaViewRow(data);
           case CategoriaRow:
             return CategoriaRow(data);
           case CarouselRow:
             return CarouselRow(data);
+          case CategoriaViewRow:
+            return CategoriaViewRow(data);
           case ProdutoRow:
             return ProdutoRow(data);
+          case MaterialViewRow:
+            return MaterialViewRow(data);
+          case ProdutoViewRow:
+            return ProdutoViewRow(data);
           case GrupoRow:
             return GrupoRow(data);
           case MaterialRow:
@@ -231,10 +229,6 @@ dynamic deserializeParam<T>(
           default:
             return null;
         }
-
-      case ParamType.DataStruct:
-        final data = json.decode(param) as Map<String, dynamic>? ?? {};
-        return structBuilder != null ? structBuilder(data) : null;
 
       default:
         return null;

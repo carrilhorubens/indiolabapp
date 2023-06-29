@@ -14,8 +14,8 @@ class GrupoRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => GrupoTable();
 
-  int get id => getField<int>('id')!;
-  set id(int value) => setField<int>('id', value);
+  int get gruId => getField<int>('gru_id')!;
+  set gruId(int value) => setField<int>('gru_id', value);
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);

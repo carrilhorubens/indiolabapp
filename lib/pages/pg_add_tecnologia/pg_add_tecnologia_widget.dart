@@ -7,28 +7,31 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'pg_add_categoria_model.dart';
-export 'pg_add_categoria_model.dart';
+import 'pg_add_tecnologia_model.dart';
+export 'pg_add_tecnologia_model.dart';
 
-class PgAddCategoriaWidget extends StatefulWidget {
-  const PgAddCategoriaWidget({Key? key}) : super(key: key);
+class PgAddTecnologiaWidget extends StatefulWidget {
+  const PgAddTecnologiaWidget({Key? key}) : super(key: key);
 
   @override
-  _PgAddCategoriaWidgetState createState() => _PgAddCategoriaWidgetState();
+  _PgAddTecnologiaWidgetState createState() => _PgAddTecnologiaWidgetState();
 }
 
-class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
-  late PgAddCategoriaModel _model;
+class _PgAddTecnologiaWidgetState extends State<PgAddTecnologiaWidget> {
+  late PgAddTecnologiaModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PgAddCategoriaModel());
+    _model = createModel(context, () => PgAddTecnologiaModel());
 
-    _model.catNomeController ??= TextEditingController();
-    _model.catDescricaoController ??= TextEditingController();
+    _model.tecCodigoController ??= TextEditingController();
+    _model.tecLogoController ??= TextEditingController();
+    _model.tecNomeController ??= TextEditingController();
+    _model.tecDescricaoController ??= TextEditingController();
+    _model.tecValorController ??= TextEditingController();
   }
 
   @override
@@ -98,7 +101,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'CADASTRO DE CATEGORIAS',
+                                        'CADASTRO DE TECNOLOGIA',
                                         style: FlutterFlowTheme.of(context)
                                             .titleMedium,
                                       ),
@@ -117,14 +120,14 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 16.0, 20.0, 0.0),
+                                            20.0, 0.0, 20.0, 16.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            FutureBuilder<List<GrupoRow>>(
-                                              future: GrupoTable().queryRows(
+                                            FutureBuilder<List<MaterialRow>>(
+                                              future: MaterialTable().queryRows(
                                                 queryFn: (q) => q,
                                               ),
                                               builder: (context, snapshot) {
@@ -144,22 +147,24 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                     ),
                                                   );
                                                 }
-                                                List<GrupoRow>
-                                                    catGrupoGrupoRowList =
+                                                List<MaterialRow>
+                                                    tecMaterialMaterialRowList =
                                                     snapshot.data!;
                                                 return FlutterFlowDropDown<
                                                     String>(
                                                   controller: _model
-                                                          .catGrupoValueController ??=
+                                                          .tecMaterialValueController ??=
                                                       FormFieldController<
                                                           String>(null),
-                                                  options: catGrupoGrupoRowList
-                                                      .map((e) => e.gruNome)
-                                                      .withoutNulls
-                                                      .toList(),
+                                                  options:
+                                                      tecMaterialMaterialRowList
+                                                          .map((e) => e.matNome)
+                                                          .withoutNulls
+                                                          .toList(),
                                                   onChanged: (val) => setState(
                                                       () => _model
-                                                          .catGrupoValue = val),
+                                                              .tecMaterialValue =
+                                                          val),
                                                   width: 300.0,
                                                   height: 50.0,
                                                   textStyle:
@@ -167,7 +172,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                               context)
                                                           .bodyMedium,
                                                   hintText:
-                                                      'Escolha o Grupo...',
+                                                      'Escolha o Material...',
                                                   icon: Icon(
                                                     Icons
                                                         .keyboard_arrow_down_rounded,
@@ -200,7 +205,252 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 16.0, 20.0, 0.0),
+                                            20.0, 0.0, 20.0, 16.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: 150.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .transparent,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .transparent,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: TextFormField(
+                                                      controller: _model
+                                                          .tecCodigoController,
+                                                      autofocus: true,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelText: 'CÓDIGO',
+                                                        labelStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontSize:
+                                                                      14.0,
+                                                                ),
+                                                        hintText: 'Código...\n',
+                                                        hintStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontSize:
+                                                                      12.0,
+                                                                ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        filled: true,
+                                                        fillColor: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize: 12.0,
+                                                              ),
+                                                      validator: _model
+                                                          .tecCodigoControllerValidator
+                                                          .asValidator(context),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 0.0),
+                                                child: TextFormField(
+                                                  controller:
+                                                      _model.tecLogoController,
+                                                  autofocus: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'MARCAÇÃO',
+                                                    labelStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                    hintText:
+                                                        'Marcação do Tecnologia...',
+                                                    hintStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 12.0,
+                                                            ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  validator: _model
+                                                      .tecLogoControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 20.0, 16.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -213,7 +463,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: TextFormField(
                                                   controller:
-                                                      _model.catNomeController,
+                                                      _model.tecNomeController,
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
@@ -228,7 +478,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                               fontSize: 14.0,
                                                             ),
                                                     hintText:
-                                                        'Nome da Categoria...',
+                                                        'Nome da Tecnologia...',
                                                     hintStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -304,7 +554,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
-                                                      .catNomeControllerValidator
+                                                      .tecNomeControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -314,7 +564,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 16.0, 20.0, 0.0),
+                                            20.0, 0.0, 20.0, 16.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -327,7 +577,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: TextFormField(
                                                   controller: _model
-                                                      .catDescricaoController,
+                                                      .tecDescricaoController,
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
@@ -342,7 +592,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                               fontSize: 14.0,
                                                             ),
                                                     hintText:
-                                                        'Descrição da Categoria...',
+                                                        'Descrição da Tecnologia...',
                                                     hintStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -418,7 +668,132 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
-                                                      .catDescricaoControllerValidator
+                                                      .tecDescricaoControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 20.0, 16.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              width: 200.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .transparent,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .transparent,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 0.0),
+                                                child: TextFormField(
+                                                  controller:
+                                                      _model.tecValorController,
+                                                  autofocus: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'VALOR\n',
+                                                    labelStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                    hintText:
+                                                        'Valor da Tecnologia...',
+                                                    hintStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 12.0,
+                                                            ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  validator: _model
+                                                      .tecValorControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -434,12 +809,12 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            FutureBuilder<List<GrupoRow>>(
-                                              future:
-                                                  GrupoTable().querySingleRow(
+                                            FutureBuilder<List<MaterialRow>>(
+                                              future: MaterialTable()
+                                                  .querySingleRow(
                                                 queryFn: (q) => q.eq(
-                                                  'gru_nome',
-                                                  _model.catGrupoValue,
+                                                  'mat_nome',
+                                                  _model.tecMaterialValue,
                                                 ),
                                               ),
                                               builder: (context, snapshot) {
@@ -459,13 +834,13 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                     ),
                                                   );
                                                 }
-                                                List<GrupoRow>
-                                                    btnSalvarGrupoRowList =
+                                                List<MaterialRow>
+                                                    btnSalvarMaterialRowList =
                                                     snapshot.data!;
-                                                final btnSalvarGrupoRow =
-                                                    btnSalvarGrupoRowList
+                                                final btnSalvarMaterialRow =
+                                                    btnSalvarMaterialRowList
                                                             .isNotEmpty
-                                                        ? btnSalvarGrupoRowList
+                                                        ? btnSalvarMaterialRowList
                                                             .first
                                                         : null;
                                                 return FFButtonWidget(
@@ -478,24 +853,41 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                             .validate()) {
                                                       return;
                                                     }
-                                                    await CategoriaTable()
+                                                    await TecnologiaTable()
                                                         .insert({
-                                                      'cat_nome': _model
-                                                          .catNomeController
+                                                      'tec_material':
+                                                          btnSalvarMaterialRow
+                                                              ?.matId,
+                                                      'tec_nome': _model
+                                                          .tecNomeController
                                                           .text,
-                                                      'cat_descricao': _model
-                                                          .catDescricaoController
+                                                      'tec_descricao': _model
+                                                          .tecDescricaoController
                                                           .text,
-                                                      'cat_grupo':
-                                                          btnSalvarGrupoRow
-                                                              ?.gruId,
-                                                      'cat_status': true,
+                                                      'tec_codigo':
+                                                          int.tryParse(_model
+                                                              .tecCodigoController
+                                                              .text),
+                                                      'tec_logo': _model
+                                                          .tecLogoController
+                                                          .text,
+                                                      'tec_valor':
+                                                          double.tryParse(_model
+                                                              .tecValorController
+                                                              .text),
+                                                      'tec_status': true,
                                                     });
                                                     setState(() {
-                                                      _model.catNomeController
+                                                      _model.tecCodigoController
+                                                          ?.clear();
+                                                      _model.tecLogoController
+                                                          ?.clear();
+                                                      _model.tecNomeController
                                                           ?.clear();
                                                       _model
-                                                          .catDescricaoController
+                                                          .tecDescricaoController
+                                                          ?.clear();
+                                                      _model.tecValorController
                                                           ?.clear();
                                                     });
                                                   },

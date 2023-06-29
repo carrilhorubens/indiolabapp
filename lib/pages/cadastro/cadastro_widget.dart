@@ -46,32 +46,52 @@ class _CadastroWidgetState extends State<CadastroWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: responsiveVisibility(
-          context: context,
-          phone: false,
-          tablet: false,
-        )
-            ? AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primary,
-                automaticallyImplyLeading: false,
-                title: Text(
-                  'CADASTRO',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
-                        color: Colors.white,
-                        fontSize: 22.0,
-                      ),
-                ),
-                actions: [],
-                centerTitle: true,
-                elevation: 2.0,
-              )
-            : null,
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 1.0,
+                    height: 75.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).primary,
+                      image: DecorationImage(
+                        fit: BoxFit.scaleDown,
+                        image: Image.asset(
+                          'assets/images/Top_Bar.png',
+                        ).image,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'CADASTRO',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineLarge
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               Expanded(
                 child: DefaultTabController(
                   length: 5,
@@ -82,20 +102,28 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                         alignment: Alignment(0.0, 0),
                         child: FlutterFlowButtonTabBar(
                           useToggleButtonStyle: true,
-                          labelStyle: FlutterFlowTheme.of(context).titleMedium,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).titleMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 18.0,
+                                  ),
                           unselectedLabelStyle:
-                              FlutterFlowTheme.of(context).titleMedium,
+                              FlutterFlowTheme.of(context).titleMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 18.0,
+                                  ),
                           labelColor: FlutterFlowTheme.of(context).alternate,
                           unselectedLabelColor:
-                              FlutterFlowTheme.of(context).secondaryText,
-                          backgroundColor: FlutterFlowTheme.of(context).primary,
+                              FlutterFlowTheme.of(context).primary,
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
                           unselectedBackgroundColor:
                               FlutterFlowTheme.of(context).alternate,
                           borderColor: FlutterFlowTheme.of(context).primary,
                           unselectedBorderColor:
                               FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
-                          borderRadius: 8.0,
+                          borderRadius: 16.0,
                           elevation: 0.0,
                           buttonMargin: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
@@ -125,971 +153,10 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: FutureBuilder<List<GrupoRow>>(
-                                        future: GrupoTable().queryRows(
-                                          queryFn: (q) => q.eq(
-                                            'gru_status',
-                                            true,
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<GrupoRow> listViewGrupoRowList =
-                                              snapshot.data!;
-                                          return ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewGrupoRowList.length,
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewGrupoRow =
-                                                  listViewGrupoRowList[
-                                                      listViewIndex];
-                                              return Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                child: Container(
-                                                  width: 100.0,
-                                                  height: 50.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16.0),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              listViewGrupoRow
-                                                                  .id
-                                                                  .toString(),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium,
-                                                            ),
-                                                          ),
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                listViewGrupoRow
-                                                                    .gruNome!,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      fontSize:
-                                                                          16.0,
-                                                                    ),
-                                                              ),
-                                                              if (listViewGrupoRow
-                                                                      .gruDescricao ==
-                                                                  '')
-                                                                Text(
-                                                                  listViewGrupoRow
-                                                                      .gruDescricao!,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium,
-                                                                ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        icon: Icon(
-                                                          Icons.edit,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          context.pushNamed(
-                                            'pg_add_grupo',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .bottomToTop,
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        text: 'ADICIONA',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          await authManager.signOut();
-                                          GoRouter.of(context)
-                                              .clearRedirectLocation();
-
-                                          await UsuariosTable().update(
-                                            data: {
-                                              'usr_logged': false,
-                                            },
-                                            matchingRows: (rows) => rows,
-                                          );
-
-                                          context.goNamedAuth(
-                                              'pg_login', context.mounted);
-                                        },
-                                        text: 'LOGOUT',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
-                                ),
                                 Expanded(
-                                  child: FutureBuilder<List<CategoriaRow>>(
-                                    future: CategoriaTable().queryRows(
-                                      queryFn: (q) =>
-                                          q.order('cat_grupo', ascending: true),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<CategoriaRow>
-                                          dataTableCategoriaRowList =
-                                          snapshot.data!;
-                                      return DataTable2(
-                                        columns: [
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'ID',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'GRUPO',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'CATEGORIA',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.55,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'AÇÃO',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                        rows: dataTableCategoriaRowList
-                                            .mapIndexed((dataTableIndex,
-                                                    dataTableCategoriaRow) =>
-                                                [
-                                                  Text(
-                                                    dataTableCategoriaRow.id
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                  ),
-                                                  FutureBuilder<List<GrupoRow>>(
-                                                    future: GrupoTable()
-                                                        .querySingleRow(
-                                                      queryFn: (q) => q.eq(
-                                                        'id',
-                                                        dataTableCategoriaRow
-                                                            .catGrupo,
-                                                      ),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<GrupoRow>
-                                                          textGrupoRowList =
-                                                          snapshot.data!;
-                                                      final textGrupoRow =
-                                                          textGrupoRowList
-                                                                  .isNotEmpty
-                                                              ? textGrupoRowList
-                                                                  .first
-                                                              : null;
-                                                      return Text(
-                                                        textGrupoRow!.gruNome!,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                      );
-                                                    },
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          dataTableCategoriaRow
-                                                              .catNome!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 16.0,
-                                                              ),
-                                                        ),
-                                                        if (dataTableCategoriaRow
-                                                                .catDescricao ==
-                                                            '')
-                                                          Text(
-                                                            dataTableCategoriaRow
-                                                                .catDescricao!,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        icon: Icon(
-                                                          Icons.edit,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ]
-                                                    .map((c) => DataCell(c))
-                                                    .toList())
-                                            .map((e) => DataRow(cells: e))
-                                            .toList(),
-                                        headingRowColor:
-                                            MaterialStateProperty.all(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                        headingRowHeight: 48.0,
-                                        dataRowColor: MaterialStateProperty.all(
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                        dataRowHeight: 48.0,
-                                        border: TableBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                        ),
-                                        dividerThickness: 1.0,
-                                        showBottomBorder: true,
-                                        minWidth: 49.0,
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          context.pushNamed(
-                                            'pg_add_grupo',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .bottomToTop,
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        text: 'ADICIONA',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          await UsuariosTable().update(
-                                            data: {
-                                              'usr_logged': false,
-                                            },
-                                            matchingRows: (rows) => rows,
-                                          );
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          await authManager.signOut();
-                                          GoRouter.of(context)
-                                              .clearRedirectLocation();
-
-                                          context.goNamedAuth(
-                                              'pg_login', context.mounted);
-                                        },
-                                        text: 'LOGOUT',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
-                                ),
-                                Expanded(
-                                  child: FutureBuilder<List<ProdutoRow>>(
-                                    future: ProdutoTable().queryRows(
-                                      queryFn: (q) => q.eq(
-                                        'pro_status',
-                                        true,
-                                      ),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<ProdutoRow> dataTableProdutoRowList =
-                                          snapshot.data!;
-                                      return DataTable2(
-                                        columns: [
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'ID',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'CATEGORIA',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'PRODUTO',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.55,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'AÇÃO',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                        rows: dataTableProdutoRowList
-                                            .mapIndexed((dataTableIndex,
-                                                    dataTableProdutoRow) =>
-                                                [
-                                                  Text(
-                                                    dataTableProdutoRow.id
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                  ),
-                                                  FutureBuilder<
-                                                      List<CategoriaRow>>(
-                                                    future: CategoriaTable()
-                                                        .querySingleRow(
-                                                      queryFn: (q) => q.eq(
-                                                        'id',
-                                                        dataTableProdutoRow
-                                                            .proCategoria,
-                                                      ),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<CategoriaRow>
-                                                          textCategoriaRowList =
-                                                          snapshot.data!;
-                                                      final textCategoriaRow =
-                                                          textCategoriaRowList
-                                                                  .isNotEmpty
-                                                              ? textCategoriaRowList
-                                                                  .first
-                                                              : null;
-                                                      return Text(
-                                                        valueOrDefault<String>(
-                                                          textCategoriaRow
-                                                              ?.catNome,
-                                                          'null',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                      );
-                                                    },
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            dataTableProdutoRow
-                                                                .proNome,
-                                                            'null',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 16.0,
-                                                              ),
-                                                        ),
-                                                        if (dataTableProdutoRow
-                                                                .proDescricao ==
-                                                            '')
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              dataTableProdutoRow
-                                                                  .proDescricao,
-                                                              'null',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium,
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        icon: Icon(
-                                                          Icons.edit,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ]
-                                                    .map((c) => DataCell(c))
-                                                    .toList())
-                                            .map((e) => DataRow(cells: e))
-                                            .toList(),
-                                        headingRowColor:
-                                            MaterialStateProperty.all(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                        headingRowHeight: 48.0,
-                                        dataRowColor: MaterialStateProperty.all(
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                        dataRowHeight: 48.0,
-                                        border: TableBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                        ),
-                                        dividerThickness: 1.0,
-                                        showBottomBorder: true,
-                                        minWidth: 49.0,
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          context.pushNamed(
-                                            'pg_add_grupo',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .bottomToTop,
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        text: 'ADICIONA',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          await UsuariosTable().update(
-                                            data: {
-                                              'usr_logged': false,
-                                            },
-                                            matchingRows: (rows) => rows,
-                                          );
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          await authManager.signOut();
-                                          GoRouter.of(context)
-                                              .clearRedirectLocation();
-
-                                          context.goNamedAuth(
-                                              'pg_login', context.mounted);
-                                        },
-                                        text: 'LOGOUT',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
-                                ),
-                                Expanded(
-                                  child: FutureBuilder<List<MaterialRow>>(
-                                    future: MaterialTable().queryRows(
+                                  child: FutureBuilder<List<GrupoRow>>(
+                                    future: GrupoTable().queryRows(
                                       queryFn: (q) => q,
                                     ),
                                     builder: (context, snapshot) {
@@ -1107,8 +174,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           ),
                                         );
                                       }
-                                      List<MaterialRow>
-                                          dataTableMaterialRowList =
+                                      List<GrupoRow> dataTableGrupoRowList =
                                           snapshot.data!;
                                       return DataTable2(
                                         columns: [
@@ -1125,43 +191,24 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                             fixedWidth: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.05,
+                                                0.1,
                                           ),
                                           DataColumn2(
                                             label: DefaultTextStyle.merge(
                                               softWrap: true,
                                               child: Text(
-                                                'PRODUTO',
+                                                'GRUPO',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .titleMedium,
                                               ),
                                             ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
                                           ),
                                           DataColumn2(
                                             label: DefaultTextStyle.merge(
                                               softWrap: true,
                                               child: Text(
-                                                'MATERIAL',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.55,
-                                          ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'AÇÃO',
+                                                'DESCRIÇÃO',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .titleMedium,
@@ -1169,61 +216,69 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                             ),
                                           ),
                                         ],
-                                        rows: dataTableMaterialRowList
+                                        rows: dataTableGrupoRowList
                                             .mapIndexed((dataTableIndex,
-                                                    dataTableMaterialRow) =>
+                                                    dataTableGrupoRow) =>
                                                 [
                                                   Text(
-                                                    dataTableMaterialRow.id
+                                                    dataTableGrupoRow.gruId
                                                         .toString(),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
-                                                  ),
-                                                  FutureBuilder<
-                                                      List<ProdutoRow>>(
-                                                    future: ProdutoTable()
-                                                        .querySingleRow(
-                                                      queryFn: (q) => q,
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<ProdutoRow>
-                                                          textProdutoRowList =
-                                                          snapshot.data!;
-                                                      final textProdutoRow =
-                                                          textProdutoRowList
-                                                                  .isNotEmpty
-                                                              ? textProdutoRowList
-                                                                  .first
-                                                              : null;
-                                                      return Text(
-                                                        valueOrDefault<String>(
-                                                          textProdutoRow
-                                                              ?.proNome,
-                                                          'null',
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .grayDark,
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_grupo',
+                                                        queryParameters: {
+                                                          'grupo':
+                                                              serializeParam(
+                                                            dataTableGrupoRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
                                                       );
                                                     },
+                                                    child: Text(
+                                                      dataTableGrupoRow
+                                                          .gruNome!,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -1240,68 +295,56 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            dataTableMaterialRow
-                                                                .matNome,
-                                                            'null',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 16.0,
-                                                              ),
-                                                        ),
-                                                        if (dataTableMaterialRow
-                                                                .matDescricao ==
-                                                            '')
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              dataTableMaterialRow
-                                                                  .matDescricao,
-                                                              'null',
-                                                            ),
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'pg_edit_grupo',
+                                                              queryParameters: {
+                                                                'grupo':
+                                                                    serializeParam(
+                                                                  dataTableGrupoRow,
+                                                                  ParamType
+                                                                      .SupabaseRow,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .topToBottom,
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            dataTableGrupoRow
+                                                                .gruDescricao!,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium,
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .grayDark,
+                                                                ),
                                                           ),
+                                                        ),
                                                       ],
                                                     ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        icon: Icon(
-                                                          Icons.edit,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                    ],
                                                   ),
                                                 ]
                                                     .map((c) => DataCell(c))
@@ -1310,14 +353,15 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                             .toList(),
                                         headingRowColor:
                                             MaterialStateProperty.all(
-                                          FlutterFlowTheme.of(context).primary,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                         ),
-                                        headingRowHeight: 48.0,
+                                        headingRowHeight: 36.0,
                                         dataRowColor: MaterialStateProperty.all(
                                           FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
-                                        dataRowHeight: 48.0,
+                                        dataRowHeight: 40.0,
                                         border: TableBorder(
                                           borderRadius:
                                               BorderRadius.circular(0.0),
@@ -1379,24 +423,354 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: FutureBuilder<List<CategoriaViewRow>>(
+                                    future: CategoriaViewTable().queryRows(
+                                      queryFn: (q) => q,
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<CategoriaViewRow>
+                                          dataTableCategoriaViewRowList =
+                                          snapshot.data!;
+                                      return DataTable2(
+                                        columns: [
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'ID',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                            fixedWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.1,
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'GRUPO',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'CATEGORIA',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        rows: dataTableCategoriaViewRowList
+                                            .mapIndexed((dataTableIndex,
+                                                    dataTableCategoriaViewRow) =>
+                                                [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_categoria',
+                                                        queryParameters: {
+                                                          'editCategoria':
+                                                              serializeParam(
+                                                            dataTableCategoriaViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        dataTableCategoriaViewRow
+                                                            .catId
+                                                            ?.toString(),
+                                                        'null',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_categoria',
+                                                        queryParameters: {
+                                                          'editCategoria':
+                                                              serializeParam(
+                                                            dataTableCategoriaViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      dataTableCategoriaViewRow
+                                                          .gruNome!,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                16.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'pg_edit_categoria',
+                                                              queryParameters: {
+                                                                'editCategoria':
+                                                                    serializeParam(
+                                                                  dataTableCategoriaViewRow,
+                                                                  ParamType
+                                                                      .SupabaseRow,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .topToBottom,
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            dataTableCategoriaViewRow
+                                                                .catNome!,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        if (dataTableCategoriaViewRow
+                                                                    .catDescricao !=
+                                                                null &&
+                                                            dataTableCategoriaViewRow
+                                                                    .catDescricao !=
+                                                                '')
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'pg_edit_categoria',
+                                                                queryParameters:
+                                                                    {
+                                                                  'editCategoria':
+                                                                      serializeParam(
+                                                                    dataTableCategoriaViewRow,
+                                                                    ParamType
+                                                                        .SupabaseRow,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .topToBottom,
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Text(
+                                                              dataTableCategoriaViewRow
+                                                                  .catDescricao!,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .grayDark,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ]
+                                                    .map((c) => DataCell(c))
+                                                    .toList())
+                                            .map((e) => DataRow(cells: e))
+                                            .toList(),
+                                        headingRowColor:
+                                            MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                        ),
+                                        headingRowHeight: 36.0,
+                                        dataRowColor: MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        dataRowHeight: 40.0,
+                                        border: TableBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        dividerThickness: 1.0,
+                                        showBottomBorder: true,
+                                        minWidth: 49.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          await UsuariosTable().update(
-                                            data: {
-                                              'usr_logged': false,
+                                          context.pushNamed(
+                                            'pg_add_categoria',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .bottomToTop,
+                                              ),
                                             },
-                                            matchingRows: (rows) => rows,
                                           );
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          await authManager.signOut();
-                                          GoRouter.of(context)
-                                              .clearRedirectLocation();
-
-                                          context.goNamedAuth(
-                                              'pg_login', context.mounted);
                                         },
-                                        text: 'LOGOUT',
+                                        text: 'ADICIONA',
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
@@ -1431,15 +805,10 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
-                                ),
                                 Expanded(
-                                  child: FutureBuilder<List<TecnologiaRow>>(
-                                    future: TecnologiaTable().queryRows(
-                                      queryFn: (q) =>
-                                          q.order('id', ascending: true),
+                                  child: FutureBuilder<List<ProdutoViewRow>>(
+                                    future: ProdutoViewTable().queryRows(
+                                      queryFn: (q) => q,
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -1456,8 +825,8 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           ),
                                         );
                                       }
-                                      List<TecnologiaRow>
-                                          dataTableTecnologiaRowList =
+                                      List<ProdutoViewRow>
+                                          dataTableProdutoViewRowList =
                                           snapshot.data!;
                                       return DataTable2(
                                         columns: [
@@ -1474,7 +843,908 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                             fixedWidth: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.05,
+                                                0.1,
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'CATEGORIA',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'PRODUTO',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'LOGO',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        rows: dataTableProdutoViewRowList
+                                            .mapIndexed((dataTableIndex,
+                                                    dataTableProdutoViewRow) =>
+                                                [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_produto',
+                                                        queryParameters: {
+                                                          'editProduto':
+                                                              serializeParam(
+                                                            dataTableProdutoViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        dataTableProdutoViewRow
+                                                            .proId
+                                                            ?.toString(),
+                                                        'null',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_produto',
+                                                        queryParameters: {
+                                                          'editProduto':
+                                                              serializeParam(
+                                                            dataTableProdutoViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      dataTableProdutoViewRow
+                                                          .catNome!,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                16.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'pg_edit_produto',
+                                                              queryParameters: {
+                                                                'editProduto':
+                                                                    serializeParam(
+                                                                  dataTableProdutoViewRow,
+                                                                  ParamType
+                                                                      .SupabaseRow,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .topToBottom,
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              dataTableProdutoViewRow
+                                                                  .proNome,
+                                                              'null',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        if (dataTableProdutoViewRow
+                                                                    .proDescricao !=
+                                                                null &&
+                                                            dataTableProdutoViewRow
+                                                                    .proDescricao !=
+                                                                '')
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'pg_edit_produto',
+                                                                queryParameters:
+                                                                    {
+                                                                  'editProduto':
+                                                                      serializeParam(
+                                                                    dataTableProdutoViewRow,
+                                                                    ParamType
+                                                                        .SupabaseRow,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .topToBottom,
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                dataTableProdutoViewRow
+                                                                    .proDescricao,
+                                                                'null',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .grayDark,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_produto',
+                                                        queryParameters: {
+                                                          'editProduto':
+                                                              serializeParam(
+                                                            dataTableProdutoViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        dataTableProdutoViewRow
+                                                            .proLogo,
+                                                        'Não existe imagem...',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ]
+                                                    .map((c) => DataCell(c))
+                                                    .toList())
+                                            .map((e) => DataRow(cells: e))
+                                            .toList(),
+                                        headingRowColor:
+                                            MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                        ),
+                                        headingRowHeight: 36.0,
+                                        dataRowColor: MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        dataRowHeight: 40.0,
+                                        border: TableBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        dividerThickness: 1.0,
+                                        showBottomBorder: true,
+                                        minWidth: 49.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'pg_add_produto',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .bottomToTop,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        text: 'ADICIONA',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: FutureBuilder<List<MaterialViewRow>>(
+                                    future: MaterialViewTable().queryRows(
+                                      queryFn: (q) => q,
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<MaterialViewRow>
+                                          dataTableMaterialViewRowList =
+                                          snapshot.data!;
+                                      return DataTable2(
+                                        columns: [
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'CÓDIGO',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                            fixedWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.1,
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'PRODUTO',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                            fixedWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.2,
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'MATERIAL',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'VALOR',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                            fixedWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.15,
+                                          ),
+                                        ],
+                                        rows: dataTableMaterialViewRowList
+                                            .mapIndexed((dataTableIndex,
+                                                    dataTableMaterialViewRow) =>
+                                                [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_material',
+                                                        queryParameters: {
+                                                          'editMaterial':
+                                                              serializeParam(
+                                                            dataTableMaterialViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        dataTableMaterialViewRow
+                                                            .matCodigo
+                                                            ?.toString(),
+                                                        '- - -',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_material',
+                                                        queryParameters: {
+                                                          'editMaterial':
+                                                              serializeParam(
+                                                            dataTableMaterialViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      dataTableMaterialViewRow
+                                                          .proNome!,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                16.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'pg_edit_material',
+                                                              queryParameters: {
+                                                                'editMaterial':
+                                                                    serializeParam(
+                                                                  dataTableMaterialViewRow,
+                                                                  ParamType
+                                                                      .SupabaseRow,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .topToBottom,
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            dataTableMaterialViewRow
+                                                                .matNome!,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        if (dataTableMaterialViewRow
+                                                                    .matDescricao !=
+                                                                null &&
+                                                            dataTableMaterialViewRow
+                                                                    .matDescricao !=
+                                                                '')
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'pg_edit_material',
+                                                                queryParameters:
+                                                                    {
+                                                                  'editMaterial':
+                                                                      serializeParam(
+                                                                    dataTableMaterialViewRow,
+                                                                    ParamType
+                                                                        .SupabaseRow,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .topToBottom,
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Text(
+                                                              dataTableMaterialViewRow
+                                                                  .matDescricao!,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .grayDark,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'pg_edit_material',
+                                                            queryParameters: {
+                                                              'editMaterial':
+                                                                  serializeParam(
+                                                                dataTableMaterialViewRow,
+                                                                ParamType
+                                                                    .SupabaseRow,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .topToBottom,
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          formatNumber(
+                                                            dataTableMaterialViewRow
+                                                                .matValor!,
+                                                            formatType:
+                                                                FormatType
+                                                                    .custom,
+                                                            format: '#,###.00',
+                                                            locale: 'pt-BR',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ]
+                                                    .map((c) => DataCell(c))
+                                                    .toList())
+                                            .map((e) => DataRow(cells: e))
+                                            .toList(),
+                                        headingRowColor:
+                                            MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                        ),
+                                        headingRowHeight: 36.0,
+                                        dataRowColor: MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        dataRowHeight: 40.0,
+                                        border: TableBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        dividerThickness: 1.0,
+                                        showBottomBorder: true,
+                                        minWidth: 49.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'pg_add_material',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .bottomToTop,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        text: 'ADICIONA',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: FutureBuilder<List<TecnologiaViewRow>>(
+                                    future: TecnologiaViewTable().queryRows(
+                                      queryFn: (q) =>
+                                          q.order('tec_id', ascending: true),
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<TecnologiaViewRow>
+                                          dataTableTecnologiaViewRowList =
+                                          snapshot.data!;
+                                      return DataTable2(
+                                        columns: [
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Text(
+                                                'CÓDIGO',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium,
+                                              ),
+                                            ),
+                                            fixedWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.1,
                                           ),
                                           DataColumn2(
                                             label: DefaultTextStyle.merge(
@@ -1501,16 +1771,12 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                         .titleMedium,
                                               ),
                                             ),
-                                            fixedWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.4,
                                           ),
                                           DataColumn2(
                                             label: DefaultTextStyle.merge(
                                               softWrap: true,
                                               child: Text(
-                                                'AÇÃO',
+                                                'VALOR',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .titleMedium,
@@ -1521,74 +1787,110 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                     .width *
                                                 0.15,
                                           ),
-                                          DataColumn2(
-                                            label: DefaultTextStyle.merge(
-                                              softWrap: true,
-                                              child: Text(
-                                                'AÇÃO',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium,
-                                              ),
-                                            ),
-                                          ),
                                         ],
-                                        rows: dataTableTecnologiaRowList
+                                        rows: dataTableTecnologiaViewRowList
                                             .mapIndexed((dataTableIndex,
-                                                    dataTableTecnologiaRow) =>
+                                                    dataTableTecnologiaViewRow) =>
                                                 [
-                                                  Text(
-                                                    dataTableTecnologiaRow.id
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                  ),
-                                                  FutureBuilder<
-                                                      List<MaterialRow>>(
-                                                    future: MaterialTable()
-                                                        .querySingleRow(
-                                                      queryFn: (q) => q
-                                                          .order('mat_produto'),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                            ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_tecnologia',
+                                                        queryParameters: {
+                                                          'editTecnologia':
+                                                              serializeParam(
+                                                            dataTableTecnologiaViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
                                                           ),
-                                                        );
-                                                      }
-                                                      List<MaterialRow>
-                                                          textMaterialRowList =
-                                                          snapshot.data!;
-                                                      final textMaterialRow =
-                                                          textMaterialRowList
-                                                                  .isNotEmpty
-                                                              ? textMaterialRowList
-                                                                  .first
-                                                              : null;
-                                                      return Text(
-                                                        valueOrDefault<String>(
-                                                          textMaterialRow
-                                                              ?.matNome,
-                                                          'null',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
                                                       );
                                                     },
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        dataTableTecnologiaViewRow
+                                                            .tecCodigo
+                                                            ?.toString(),
+                                                        'null',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pg_edit_tecnologia',
+                                                        queryParameters: {
+                                                          'editTecnologia':
+                                                              serializeParam(
+                                                            dataTableTecnologiaViewRow,
+                                                            ParamType
+                                                                .SupabaseRow,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .topToBottom,
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      dataTableTecnologiaViewRow
+                                                          .matNome!,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                    ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -1605,101 +1907,188 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            dataTableTecnologiaRow
-                                                                .tecNome,
-                                                            'null',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontSize: 16.0,
-                                                              ),
-                                                        ),
-                                                        if (dataTableTecnologiaRow
-                                                                    .tecDescricao !=
-                                                                null &&
-                                                            dataTableTecnologiaRow
-                                                                    .tecDescricao !=
-                                                                '')
-                                                          Text(
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'pg_edit_tecnologia',
+                                                              queryParameters: {
+                                                                'editTecnologia':
+                                                                    serializeParam(
+                                                                  dataTableTecnologiaViewRow,
+                                                                  ParamType
+                                                                      .SupabaseRow,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .topToBottom,
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              dataTableTecnologiaRow
-                                                                  .tecDescricao,
+                                                              dataTableTecnologiaViewRow
+                                                                  .tecNome,
                                                               'null',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        if (dataTableTecnologiaViewRow
+                                                                    .tecDescricao !=
+                                                                null &&
+                                                            dataTableTecnologiaViewRow
+                                                                    .tecDescricao !=
+                                                                '')
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'pg_edit_tecnologia',
+                                                                queryParameters:
+                                                                    {
+                                                                  'editTecnologia':
+                                                                      serializeParam(
+                                                                    dataTableTecnologiaViewRow,
+                                                                    ParamType
+                                                                        .SupabaseRow,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .topToBottom,
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                dataTableTecnologiaViewRow
+                                                                    .tecDescricao,
+                                                                'null',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .grayDark,
+                                                                  ),
+                                                            ),
                                                           ),
                                                       ],
                                                     ),
                                                   ),
-                                                  Column(
+                                                  Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.end,
                                                     children: [
-                                                      Text(
-                                                        valueOrDefault<String>(
-                                                          formatNumber(
-                                                            dataTableTecnologiaRow
-                                                                .tecValor,
-                                                            formatType:
-                                                                FormatType
-                                                                    .decimal,
-                                                            decimalType:
-                                                                DecimalType
-                                                                    .commaDecimal,
-                                                          ),
-                                                          '----',
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 16.0,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        icon: Icon(
-                                                          Icons.edit,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'pg_edit_tecnologia',
+                                                            queryParameters: {
+                                                              'editTecnologia':
+                                                                  serializeParam(
+                                                                dataTableTecnologiaViewRow,
+                                                                ParamType
+                                                                    .SupabaseRow,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .topToBottom,
+                                                              ),
+                                                            },
+                                                          );
                                                         },
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            formatNumber(
+                                                              dataTableTecnologiaViewRow
+                                                                  .tecValor,
+                                                              formatType:
+                                                                  FormatType
+                                                                      .custom,
+                                                              format:
+                                                                  '#,###.00',
+                                                              locale: 'pt-BR',
+                                                            ),
+                                                            '- - -',
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayDark,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -1710,14 +2099,15 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                             .toList(),
                                         headingRowColor:
                                             MaterialStateProperty.all(
-                                          FlutterFlowTheme.of(context).primary,
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                         ),
-                                        headingRowHeight: 48.0,
+                                        headingRowHeight: 36.0,
                                         dataRowColor: MaterialStateProperty.all(
                                           FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
-                                        dataRowHeight: 48.0,
+                                        dataRowHeight: 40.0,
                                         border: TableBorder(
                                           borderRadius:
                                               BorderRadius.circular(0.0),
@@ -1740,7 +2130,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                       FFButtonWidget(
                                         onPressed: () async {
                                           context.pushNamed(
-                                            'pg_add_grupo',
+                                            'pg_add_tecnologia',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -1753,50 +2143,6 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           );
                                         },
                                         text: 'ADICIONA',
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          await UsuariosTable().update(
-                                            data: {
-                                              'usr_logged': false,
-                                            },
-                                            matchingRows: (rows) => rows,
-                                          );
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          await authManager.signOut();
-                                          GoRouter.of(context)
-                                              .clearRedirectLocation();
-
-                                          context.goNamedAuth(
-                                              'pg_login', context.mounted);
-                                        },
-                                        text: 'LOGOUT',
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
@@ -1834,6 +2180,61 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                     ],
                   ),
                 ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 1.0,
+                    height: 75.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).primary,
+                      image: DecorationImage(
+                        fit: BoxFit.none,
+                        image: Image.asset(
+                          'assets/images/Bottom_Bar.png',
+                        ).image,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              36.0, 0.0, 36.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 30.0,
+                                borderWidth: 1.0,
+                                buttonSize: 60.0,
+                                fillColor: FlutterFlowTheme.of(context).primary,
+                                icon: Icon(
+                                  Icons.logout,
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  await authManager.signOut();
+                                  GoRouter.of(context).clearRedirectLocation();
+
+                                  context.goNamedAuth(
+                                      'pg_login', context.mounted);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

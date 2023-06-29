@@ -1,34 +1,39 @@
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'pg_add_categoria_model.dart';
-export 'pg_add_categoria_model.dart';
+import 'pg_edit_grupo_model.dart';
+export 'pg_edit_grupo_model.dart';
 
-class PgAddCategoriaWidget extends StatefulWidget {
-  const PgAddCategoriaWidget({Key? key}) : super(key: key);
+class PgEditGrupoWidget extends StatefulWidget {
+  const PgEditGrupoWidget({
+    Key? key,
+    required this.grupo,
+  }) : super(key: key);
+
+  final GrupoRow? grupo;
 
   @override
-  _PgAddCategoriaWidgetState createState() => _PgAddCategoriaWidgetState();
+  _PgEditGrupoWidgetState createState() => _PgEditGrupoWidgetState();
 }
 
-class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
-  late PgAddCategoriaModel _model;
+class _PgEditGrupoWidgetState extends State<PgEditGrupoWidget> {
+  late PgEditGrupoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PgAddCategoriaModel());
+    _model = createModel(context, () => PgEditGrupoModel());
 
-    _model.catNomeController ??= TextEditingController();
-    _model.catDescricaoController ??= TextEditingController();
+    _model.gruNomeController ??=
+        TextEditingController(text: widget.grupo?.gruNome);
+    _model.gruDescricaoController ??=
+        TextEditingController(text: widget.grupo?.gruDescricao);
   }
 
   @override
@@ -98,7 +103,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'CADASTRO DE CATEGORIAS',
+                                        'MANUTENÇÃO DE GRUPOS',
                                         style: FlutterFlowTheme.of(context)
                                             .titleMedium,
                                       ),
@@ -123,89 +128,6 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            FutureBuilder<List<GrupoRow>>(
-                                              future: GrupoTable().queryRows(
-                                                queryFn: (q) => q,
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<GrupoRow>
-                                                    catGrupoGrupoRowList =
-                                                    snapshot.data!;
-                                                return FlutterFlowDropDown<
-                                                    String>(
-                                                  controller: _model
-                                                          .catGrupoValueController ??=
-                                                      FormFieldController<
-                                                          String>(null),
-                                                  options: catGrupoGrupoRowList
-                                                      .map((e) => e.gruNome)
-                                                      .withoutNulls
-                                                      .toList(),
-                                                  onChanged: (val) => setState(
-                                                      () => _model
-                                                          .catGrupoValue = val),
-                                                  width: 300.0,
-                                                  height: 50.0,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium,
-                                                  hintText:
-                                                      'Escolha o Grupo...',
-                                                  icon: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  fillColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  elevation: 2.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  borderWidth: 2.0,
-                                                  borderRadius: 8.0,
-                                                  margin: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 4.0, 16.0, 4.0),
-                                                  hidesUnderline: true,
-                                                  isSearchable: false,
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 16.0, 20.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
                                             Expanded(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -213,7 +135,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: TextFormField(
                                                   controller:
-                                                      _model.catNomeController,
+                                                      _model.gruNomeController,
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
@@ -228,7 +150,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                               fontSize: 14.0,
                                                             ),
                                                     hintText:
-                                                        'Nome da Categoria...',
+                                                        'Digite o nome...\n',
                                                     hintStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -304,7 +226,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
-                                                      .catNomeControllerValidator
+                                                      .gruNomeControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -327,7 +249,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         8.0, 0.0, 8.0, 0.0),
                                                 child: TextFormField(
                                                   controller: _model
-                                                      .catDescricaoController,
+                                                      .gruDescricaoController,
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
@@ -342,7 +264,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                               fontSize: 14.0,
                                                             ),
                                                     hintText:
-                                                        'Descrição da Categoria...',
+                                                        'Digite a descrição...',
                                                     hintStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -418,7 +340,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
-                                                      .catDescricaoControllerValidator
+                                                      .gruDescricaoControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -434,87 +356,40 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            FutureBuilder<List<GrupoRow>>(
-                                              future:
-                                                  GrupoTable().querySingleRow(
-                                                queryFn: (q) => q.eq(
-                                                  'gru_nome',
-                                                  _model.catGrupoValue,
-                                                ),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                      ),
-                                                    ),
-                                                  );
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
                                                 }
-                                                List<GrupoRow>
-                                                    btnSalvarGrupoRowList =
-                                                    snapshot.data!;
-                                                final btnSalvarGrupoRow =
-                                                    btnSalvarGrupoRowList
-                                                            .isNotEmpty
-                                                        ? btnSalvarGrupoRowList
-                                                            .first
-                                                        : null;
-                                                return FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if (_model.formKey
-                                                                .currentState ==
-                                                            null ||
-                                                        !_model.formKey
-                                                            .currentState!
-                                                            .validate()) {
-                                                      return;
-                                                    }
-                                                    await CategoriaTable()
-                                                        .insert({
-                                                      'cat_nome': _model
-                                                          .catNomeController
-                                                          .text,
-                                                      'cat_descricao': _model
-                                                          .catDescricaoController
-                                                          .text,
-                                                      'cat_grupo':
-                                                          btnSalvarGrupoRow
-                                                              ?.gruId,
-                                                      'cat_status': true,
-                                                    });
-                                                    setState(() {
-                                                      _model.catNomeController
-                                                          ?.clear();
-                                                      _model
-                                                          .catDescricaoController
-                                                          ?.clear();
-                                                    });
-                                                  },
-                                                  text: 'SALVAR',
-                                                  options: FFButtonOptions(
-                                                    height: 40.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(24.0, 0.0,
-                                                                24.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                                await GrupoTable().insert({
+                                                  'gru_status': true,
+                                                  'gru_nome': _model
+                                                      .gruNomeController.text,
+                                                  'gru_descricao': widget
+                                                      .grupo?.gruDescricao,
+                                                });
+                                                context.safePop();
+                                              },
+                                              text: 'SALVAR',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .secondary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
@@ -522,20 +397,68 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
-                                                    elevation: 3.0,
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      width: 2.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
+                                                }
+                                                await GrupoTable().delete(
+                                                  matchingRows: (rows) =>
+                                                      rows.eq(
+                                                    'gru_id',
+                                                    widget.grupo?.gruId,
                                                   ),
                                                 );
+                                                context.safePop();
                                               },
+                                              text: 'APAGAR',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: Colors.white,
+                                                          fontSize: 14.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {

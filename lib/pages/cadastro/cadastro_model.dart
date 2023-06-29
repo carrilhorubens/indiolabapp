@@ -22,6 +22,7 @@ class CadastroModel extends FlutterFlowModel {
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
+    dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
   }
 
   void dispose() {

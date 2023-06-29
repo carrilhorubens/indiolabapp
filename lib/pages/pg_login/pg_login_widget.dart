@@ -1,5 +1,4 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -282,25 +281,6 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .displaySmall,
                                               ),
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 30.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 44.0,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              icon: Icon(
-                                                Icons.logout,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                size: 24.0,
-                                              ),
-                                              onPressed: () async {
-                                                context.pushNamed('cadastro');
-                                              },
                                             ),
                                             FlutterFlowIconButton(
                                               borderColor: Colors.transparent,
@@ -628,13 +608,6 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
                                                 if (user == null) {
                                                   return;
                                                 }
-
-                                                await UsuariosTable().update(
-                                                  data: {
-                                                    'usr_logged': true,
-                                                  },
-                                                  matchingRows: (rows) => rows,
-                                                );
 
                                                 context.goNamedAuth('cadastro',
                                                     context.mounted);

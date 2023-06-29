@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '../../auth/base_auth_user_provider.dart';
 
@@ -110,6 +109,60 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'pg_add_categoria',
           path: '/pgAddCategoria',
           builder: (context, params) => PgAddCategoriaWidget(),
+        ),
+        FFRoute(
+          name: 'pg_add_produto',
+          path: '/pgAddProduto',
+          builder: (context, params) => PgAddProdutoWidget(),
+        ),
+        FFRoute(
+          name: 'pg_edit_grupo',
+          path: '/pgEditGrupo',
+          builder: (context, params) => PgEditGrupoWidget(
+            grupo: params.getParam<GrupoRow>('grupo', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'pg_edit_categoria',
+          path: '/pgEditCategoria',
+          builder: (context, params) => PgEditCategoriaWidget(
+            editCategoria: params.getParam<CategoriaViewRow>(
+                'editCategoria', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'pg_edit_produto',
+          path: '/pgEditProduto',
+          builder: (context, params) => PgEditProdutoWidget(
+            editProduto: params.getParam<ProdutoViewRow>(
+                'editProduto', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'pg_add_material',
+          path: '/pgAddMaterial',
+          builder: (context, params) => PgAddMaterialWidget(),
+        ),
+        FFRoute(
+          name: 'pg_add_tecnologia',
+          path: '/pgAddTecnologia',
+          builder: (context, params) => PgAddTecnologiaWidget(),
+        ),
+        FFRoute(
+          name: 'pg_edit_tecnologia',
+          path: '/pgEditTecnologia',
+          builder: (context, params) => PgEditTecnologiaWidget(
+            editTecnologia: params.getParam<TecnologiaViewRow>(
+                'editTecnologia', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'pg_edit_material',
+          path: '/pgEditMaterial',
+          builder: (context, params) => PgEditMaterialWidget(
+            editMaterial: params.getParam<MaterialViewRow>(
+                'editMaterial', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

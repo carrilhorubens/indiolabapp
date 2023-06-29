@@ -14,8 +14,8 @@ class CategoriaRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => CategoriaTable();
 
-  int get id => getField<int>('id')!;
-  set id(int value) => setField<int>('id', value);
+  int get catId => getField<int>('cat_id')!;
+  set catId(int value) => setField<int>('cat_id', value);
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);

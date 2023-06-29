@@ -7,28 +7,35 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'pg_add_categoria_model.dart';
-export 'pg_add_categoria_model.dart';
+import 'pg_edit_categoria_model.dart';
+export 'pg_edit_categoria_model.dart';
 
-class PgAddCategoriaWidget extends StatefulWidget {
-  const PgAddCategoriaWidget({Key? key}) : super(key: key);
+class PgEditCategoriaWidget extends StatefulWidget {
+  const PgEditCategoriaWidget({
+    Key? key,
+    required this.editCategoria,
+  }) : super(key: key);
+
+  final CategoriaViewRow? editCategoria;
 
   @override
-  _PgAddCategoriaWidgetState createState() => _PgAddCategoriaWidgetState();
+  _PgEditCategoriaWidgetState createState() => _PgEditCategoriaWidgetState();
 }
 
-class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
-  late PgAddCategoriaModel _model;
+class _PgEditCategoriaWidgetState extends State<PgEditCategoriaWidget> {
+  late PgEditCategoriaModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PgAddCategoriaModel());
+    _model = createModel(context, () => PgEditCategoriaModel());
 
-    _model.catNomeController ??= TextEditingController();
-    _model.catDescricaoController ??= TextEditingController();
+    _model.catNomeController ??=
+        TextEditingController(text: widget.editCategoria?.catNome);
+    _model.catDescricaoController ??=
+        TextEditingController(text: widget.editCategoria?.catDescricao);
   }
 
   @override
@@ -98,7 +105,7 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'CADASTRO DE CATEGORIAS',
+                                        'MANUTENÇÃO DE CATEGORIAS',
                                         style: FlutterFlowTheme.of(context)
                                             .titleMedium,
                                       ),
@@ -166,8 +173,8 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .bodyMedium,
-                                                  hintText:
-                                                      'Escolha o Grupo...',
+                                                  hintText: widget
+                                                      .editCategoria?.gruNome,
                                                   icon: Icon(
                                                     Icons
                                                         .keyboard_arrow_down_rounded,
@@ -478,26 +485,53 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                             .validate()) {
                                                       return;
                                                     }
-                                                    await CategoriaTable()
-                                                        .insert({
-                                                      'cat_nome': _model
-                                                          .catNomeController
-                                                          .text,
-                                                      'cat_descricao': _model
-                                                          .catDescricaoController
-                                                          .text,
-                                                      'cat_grupo':
-                                                          btnSalvarGrupoRow
-                                                              ?.gruId,
-                                                      'cat_status': true,
-                                                    });
-                                                    setState(() {
-                                                      _model.catNomeController
-                                                          ?.clear();
-                                                      _model
-                                                          .catDescricaoController
-                                                          ?.clear();
-                                                    });
+                                                    if (_model.catGrupoValue ==
+                                                            null ||
+                                                        _model.catGrupoValue ==
+                                                            '') {
+                                                      // Mantido
+                                                      await CategoriaTable()
+                                                          .update(
+                                                        data: {
+                                                          'cat_nome': _model
+                                                              .catNomeController
+                                                              .text,
+                                                          'cat_descricao': _model
+                                                              .catDescricaoController
+                                                              .text,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'cat_id',
+                                                          widget.editCategoria
+                                                              ?.catId,
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      // Alterado
+                                                      await CategoriaTable()
+                                                          .update(
+                                                        data: {
+                                                          'cat_nome': _model
+                                                              .catNomeController
+                                                              .text,
+                                                          'cat_descricao': _model
+                                                              .catDescricaoController
+                                                              .text,
+                                                          'cat_grupo':
+                                                              btnSalvarGrupoRow
+                                                                  ?.gruId,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'cat_id',
+                                                          widget.editCategoria
+                                                              ?.catId,
+                                                        ),
+                                                      );
+                                                    }
+
+                                                    context.safePop();
                                                   },
                                                   text: 'SALVAR',
                                                   options: FFButtonOptions(
@@ -536,6 +570,51 @@ class _PgAddCategoriaWidgetState extends State<PgAddCategoriaWidget> {
                                                   ),
                                                 );
                                               },
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
+                                                }
+                                                context.safePop();
+                                              },
+                                              text: 'APAGAR',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: Colors.white,
+                                                          fontSize: 14.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {

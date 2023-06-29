@@ -14,8 +14,8 @@ class TecnologiaRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => TecnologiaTable();
 
-  int get id => getField<int>('id')!;
-  set id(int value) => setField<int>('id', value);
+  int get tecId => getField<int>('tec_id')!;
+  set tecId(int value) => setField<int>('tec_id', value);
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
