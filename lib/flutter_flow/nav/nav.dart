@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '../../auth/base_auth_user_provider.dart';
 
@@ -77,13 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? CadastroWidget() : PgLoginWidget(),
+          appStateNotifier.loggedIn ? MainMenuWidget() : PgLoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? CadastroWidget() : PgLoginWidget(),
+              appStateNotifier.loggedIn ? MainMenuWidget() : PgLoginWidget(),
         ),
         FFRoute(
           name: 'pg_login',
@@ -91,9 +92,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgLoginWidget(),
         ),
         FFRoute(
-          name: 'pg_add_user',
-          path: '/pgAddUser',
-          builder: (context, params) => PgAddUserWidget(),
+          name: 'pg_add_usuario',
+          path: '/pgAddUsuario',
+          builder: (context, params) => PgAddUsuarioWidget(),
         ),
         FFRoute(
           name: 'pg_add_grupo',
@@ -101,19 +102,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgAddGrupoWidget(),
         ),
         FFRoute(
-          name: 'cadastro',
-          path: '/cadastro',
-          builder: (context, params) => CadastroWidget(),
+          name: 'pg_cad_produtos',
+          path: '/pgCadProdutos',
+          builder: (context, params) => PgCadProdutosWidget(),
         ),
         FFRoute(
           name: 'pg_add_categoria',
           path: '/pgAddCategoria',
-          builder: (context, params) => PgAddCategoriaWidget(),
+          builder: (context, params) => PgAddCategoriaWidget(
+            passGrupo:
+                params.getParam<GrupoRow>('passGrupo', ParamType.SupabaseRow),
+          ),
         ),
         FFRoute(
           name: 'pg_add_produto',
           path: '/pgAddProduto',
-          builder: (context, params) => PgAddProdutoWidget(),
+          builder: (context, params) => PgAddProdutoWidget(
+            passCategoria: params.getParam<CategoriaViewRow>(
+                'passCategoria', ParamType.SupabaseRow),
+          ),
         ),
         FFRoute(
           name: 'pg_edit_grupo',
@@ -141,12 +148,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'pg_add_material',
           path: '/pgAddMaterial',
-          builder: (context, params) => PgAddMaterialWidget(),
+          builder: (context, params) => PgAddMaterialWidget(
+            passProduto: params.getParam<ProdutoViewRow>(
+                'passProduto', ParamType.SupabaseRow),
+          ),
         ),
         FFRoute(
           name: 'pg_add_tecnologia',
           path: '/pgAddTecnologia',
-          builder: (context, params) => PgAddTecnologiaWidget(),
+          builder: (context, params) => PgAddTecnologiaWidget(
+            passMaterial: params.getParam<MaterialViewRow>(
+                'passMaterial', ParamType.SupabaseRow),
+          ),
         ),
         FFRoute(
           name: 'pg_edit_tecnologia',
@@ -162,6 +175,50 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgEditMaterialWidget(
             editMaterial: params.getParam<MaterialViewRow>(
                 'editMaterial', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'pg_add_cliente',
+          path: '/pgAddCliente',
+          builder: (context, params) => PgAddClienteWidget(),
+        ),
+        FFRoute(
+          name: 'pg_cad_usuarios',
+          path: '/pgCadUsuarios',
+          builder: (context, params) => PgCadUsuariosWidget(),
+        ),
+        FFRoute(
+          name: 'main_menu',
+          path: '/mainMenu',
+          builder: (context, params) => MainMenuWidget(),
+        ),
+        FFRoute(
+          name: 'pg_edit_cliente',
+          path: '/pgEditCliente',
+          builder: (context, params) => PgEditClienteWidget(
+            passCliente: params.getParam<ClientesViewRow>(
+                'passCliente', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'teste',
+          path: '/teste',
+          builder: (context, params) => TesteWidget(),
+        ),
+        FFRoute(
+          name: 'pg_add_servico',
+          path: '/pgAddServico',
+          builder: (context, params) => PgAddServicoWidget(
+            passCategoria: params.getParam<CategoriaViewRow>(
+                'passCategoria', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'pg_edit_servico',
+          path: '/pgEditServico',
+          builder: (context, params) => PgEditServicoWidget(
+            editServico: params.getParam<ServicoViewRow>(
+                'editServico', ParamType.SupabaseRow),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

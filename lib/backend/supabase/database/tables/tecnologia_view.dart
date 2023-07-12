@@ -18,6 +18,9 @@ class TecnologiaViewRow extends SupabaseDataRow {
   int? get tecId => getField<int>('tec_id');
   set tecId(int? value) => setField<int>('tec_id', value);
 
+  int? get tecCodigo => getField<int>('tec_codigo');
+  set tecCodigo(int? value) => setField<int>('tec_codigo', value);
+
   String? get tecNome => getField<String>('tec_nome');
   set tecNome(String? value) => setField<String>('tec_nome', value);
 
@@ -26,12 +29,6 @@ class TecnologiaViewRow extends SupabaseDataRow {
 
   int? get tecMaterial => getField<int>('tec_material');
   set tecMaterial(int? value) => setField<int>('tec_material', value);
-
-  String? get tecLogo => getField<String>('tec_logo');
-  set tecLogo(String? value) => setField<String>('tec_logo', value);
-
-  int? get tecCodigo => getField<int>('tec_codigo');
-  set tecCodigo(int? value) => setField<int>('tec_codigo', value);
 
   double? get tecValor => getField<double>('tec_valor');
   set tecValor(double? value) => setField<double>('tec_valor', value);

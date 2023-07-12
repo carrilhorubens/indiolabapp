@@ -3,29 +3,28 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'pg_add_user_model.dart';
-export 'pg_add_user_model.dart';
+import 'pg_add_usuario_model.dart';
+export 'pg_add_usuario_model.dart';
 
-class PgAddUserWidget extends StatefulWidget {
-  const PgAddUserWidget({Key? key}) : super(key: key);
+class PgAddUsuarioWidget extends StatefulWidget {
+  const PgAddUsuarioWidget({Key? key}) : super(key: key);
 
   @override
-  _PgAddUserWidgetState createState() => _PgAddUserWidgetState();
+  _PgAddUsuarioWidgetState createState() => _PgAddUsuarioWidgetState();
 }
 
-class _PgAddUserWidgetState extends State<PgAddUserWidget> {
-  late PgAddUserModel _model;
+class _PgAddUsuarioWidgetState extends State<PgAddUsuarioWidget> {
+  late PgAddUsuarioModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PgAddUserModel());
+    _model = createModel(context, () => PgAddUsuarioModel());
 
     _model.usrCodigoController ??= TextEditingController();
     _model.usrNomeController ??= TextEditingController();
@@ -62,8 +61,8 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 1.0,
-                height: MediaQuery.of(context).size.height * 1.0,
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -75,8 +74,8 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
@@ -87,12 +86,11 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 16.0),
+                                    16.0, 16.0, 16.0, 0.0),
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.05,
+                                      MediaQuery.sizeOf(context).height * 0.05,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).accent1,
                                     borderRadius: BorderRadius.circular(25.0),
@@ -111,7 +109,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: Form(
                                   key: _model.formKey,
                                   autovalidateMode: AutovalidateMode.always,
@@ -139,26 +137,22 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'CÓDIGO',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Digite o código...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -220,8 +214,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   keyboardType:
@@ -255,26 +248,22 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'NOME',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Digite o nome...\n',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -336,8 +325,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -369,26 +357,22 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'EMAIL\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Digite seu email...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -450,8 +434,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   keyboardType: TextInputType
@@ -485,26 +468,22 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'FOTO',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Digite a foto...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -566,8 +545,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   keyboardType: TextInputType
@@ -602,26 +580,22 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                       .usrSenhaVisibility,
                                                   decoration: InputDecoration(
                                                     labelText: 'SENHA',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Digite a senha...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -705,8 +679,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   keyboardType: TextInputType
@@ -730,26 +703,22 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                       .usrConfirmaVisibility,
                                                   decoration: InputDecoration(
                                                     labelText: 'CONFIRMAÇÃO\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Repita a senha...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -833,8 +802,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   keyboardType: TextInputType
@@ -911,9 +879,49 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                   'usr_imagem': '',
                                                   'user_id': currentUserUid,
                                                 });
+                                                setState(() {
+                                                  _model.usrCodigoController
+                                                      ?.clear();
+                                                  _model.usrNomeController
+                                                      ?.clear();
+                                                  _model.usrEmailController
+                                                      ?.clear();
+                                                  _model.usrImagemController
+                                                      ?.clear();
+                                                  _model.usrSenhaController
+                                                      ?.clear();
+                                                  _model.usrConfirmaController
+                                                      ?.clear();
+                                                });
+                                                ScaffoldMessenger.of(context)
+                                                    .clearSnackBars();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Usuário adicionado com sucesso !',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                              ),
+                                                    ),
+                                                    duration: Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                  ),
+                                                );
 
-                                                context.pushNamedAuth(
-                                                    'pg_login',
+                                                context.goNamedAuth('main_menu',
                                                     context.mounted);
                                               },
                                               text: 'SALVAR',
@@ -933,8 +941,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -951,7 +958,8 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                context.pushNamed('pg_login');
+                                                context.pushNamed(
+                                                    'pg_cad_usuarios');
                                               },
                                               text: 'VOLTAR',
                                               options: FFButtonOptions(
@@ -970,8 +978,7 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -1002,8 +1009,8 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).grayBright,
                             image: DecorationImage(
@@ -1012,103 +1019,6 @@ class _PgAddUserWidgetState extends State<PgAddUserWidget> {
                                 'assets/images/logo_h_escuro.png',
                               ).image,
                             ),
-                          ),
-                          child: FutureBuilder<List<UsuariosRow>>(
-                            future: UsuariosTable().queryRows(
-                              queryFn: (q) => q,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<UsuariosRow> dataTableUsuariosRowList =
-                                  snapshot.data!;
-                              return DataTable2(
-                                columns: [
-                                  DataColumn2(
-                                    label: DefaultTextStyle.merge(
-                                      softWrap: true,
-                                      child: Text(
-                                        'CÓDIGO',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                      ),
-                                    ),
-                                  ),
-                                  DataColumn2(
-                                    label: DefaultTextStyle.merge(
-                                      softWrap: true,
-                                      child: Text(
-                                        'NOME',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelLarge,
-                                      ),
-                                    ),
-                                  ),
-                                  DataColumn2(
-                                    label: DefaultTextStyle.merge(
-                                      softWrap: true,
-                                      child: Text(
-                                        'EMAIL',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelLarge,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                                rows: dataTableUsuariosRowList
-                                    .mapIndexed((dataTableIndex,
-                                            dataTableUsuariosRow) =>
-                                        [
-                                          Text(
-                                            valueOrDefault<String>(
-                                              dataTableUsuariosRow.usrCodigo
-                                                  ?.toString(),
-                                              'null',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                          Text(
-                                            dataTableUsuariosRow.usrNome!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                          Text(
-                                            dataTableUsuariosRow.usrEmail!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ].map((c) => DataCell(c)).toList())
-                                    .map((e) => DataRow(cells: e))
-                                    .toList(),
-                                headingRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                ),
-                                headingRowHeight: 25.0,
-                                dataRowColor: MaterialStateProperty.all(
-                                  FlutterFlowTheme.of(context).transparent,
-                                ),
-                                dataRowHeight: 25.0,
-                                border: TableBorder(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                dividerThickness: 1.0,
-                                showBottomBorder: true,
-                                minWidth: 49.0,
-                              );
-                            },
                           ),
                         ),
                       ],

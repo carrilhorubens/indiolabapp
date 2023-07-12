@@ -3,12 +3,11 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class PgAddUserModel extends FlutterFlowModel {
+class PgAddUsuarioModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -120,7 +119,6 @@ class PgAddUserModel extends FlutterFlowModel {
     usrSenhaControllerValidator = _usrSenhaControllerValidator;
     usrConfirmaVisibility = false;
     usrConfirmaControllerValidator = _usrConfirmaControllerValidator;
-    dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
   }
 
   void dispose() {

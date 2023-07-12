@@ -34,8 +34,6 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
 
     _model.tecCodigoController ??= TextEditingController(
         text: widget.editTecnologia?.tecCodigo?.toString());
-    _model.tecLogoController ??=
-        TextEditingController(text: widget.editTecnologia?.tecLogo);
     _model.tecNomeController ??=
         TextEditingController(text: widget.editTecnologia?.tecNome);
     _model.tecDescricaoController ??=
@@ -71,8 +69,8 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 1.0,
-                height: MediaQuery.of(context).size.height * 1.0,
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -84,8 +82,8 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
@@ -96,12 +94,11 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 16.0),
+                                    16.0, 16.0, 16.0, 0.0),
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.05,
+                                      MediaQuery.sizeOf(context).height * 0.05,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).accent1,
                                     borderRadius: BorderRadius.circular(25.0),
@@ -120,7 +117,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: Form(
                                   key: _model.formKey,
                                   autovalidateMode: AutovalidateMode.always,
@@ -130,7 +127,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 16.0),
+                                            20.0, 16.0, 20.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -215,11 +212,11 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 16.0),
+                                            20.0, 16.0, 20.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -259,7 +256,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Roboto',
                                                                   fontSize:
                                                                       14.0,
                                                                 ),
@@ -270,7 +267,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Roboto',
                                                                   fontSize:
                                                                       12.0,
                                                                 ),
@@ -341,7 +338,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       validator: _model
@@ -352,115 +349,12 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                 ),
                                               ],
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 0.0, 8.0, 0.0),
-                                                child: TextFormField(
-                                                  controller:
-                                                      _model.tecLogoController,
-                                                  autofocus: true,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    labelText: 'MARCAÇÃO',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
-                                                    hintText:
-                                                        'Marcação do Tecnologia...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    focusedErrorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    filled: true,
-                                                    fillColor: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 12.0,
-                                                      ),
-                                                  validator: _model
-                                                      .tecLogoControllerValidator
-                                                      .asValidator(context),
-                                                ),
-                                              ),
-                                            ),
                                           ],
                                         ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 16.0),
+                                            20.0, 16.0, 20.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -475,29 +369,28 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                   controller:
                                                       _model.tecNomeController,
                                                   autofocus: true,
+                                                  textCapitalization:
+                                                      TextCapitalization
+                                                          .characters,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'NOME',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Nome da Tecnologia...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -559,8 +452,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -574,7 +466,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 16.0),
+                                            20.0, 16.0, 20.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -589,29 +481,28 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                   controller: _model
                                                       .tecDescricaoController,
                                                   autofocus: true,
+                                                  textCapitalization:
+                                                      TextCapitalization
+                                                          .characters,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'DESCRIÇÃO\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Descrição da Tecnologia...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -673,8 +564,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -688,14 +578,14 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 16.0),
+                                            20.0, 16.0, 20.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
                                             Container(
-                                              width: 200.0,
+                                              width: 150.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -717,26 +607,22 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'VALOR\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Valor da Tecnologia...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -798,10 +684,10 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
+                                                  textAlign: TextAlign.end,
                                                   validator: _model
                                                       .tecValorControllerValidator
                                                       .asValidator(context),
@@ -883,14 +769,10 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                               .tryParse(_model
                                                                   .tecCodigoController
                                                                   .text),
-                                                          'tec_logo': _model
-                                                              .tecLogoController
-                                                              .text,
                                                           'tec_valor': double
                                                               .tryParse(_model
                                                                   .tecValorController
                                                                   .text),
-                                                          'tec_status': true,
                                                         },
                                                         matchingRows: (rows) =>
                                                             rows,
@@ -912,20 +794,44 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                               .tryParse(_model
                                                                   .tecCodigoController
                                                                   .text),
-                                                          'tec_logo': _model
-                                                              .tecLogoController
-                                                              .text,
                                                           'tec_valor': double
                                                               .tryParse(_model
                                                                   .tecValorController
                                                                   .text),
-                                                          'tec_status': true,
                                                         },
                                                         matchingRows: (rows) =>
                                                             rows,
                                                       );
                                                     }
 
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .clearSnackBars();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Tecnologia alterada com sucesso !',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .titleMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                              ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
                                                     context.safePop();
                                                   },
                                                   text: 'SALVAR',
@@ -946,8 +852,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                             .of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -965,6 +870,114 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                   ),
                                                 );
                                               },
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Apagar'),
+                                                              content: Text(
+                                                                  'Tem certeza que você quer apagar?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: Text(
+                                                                      'NÃO'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: Text(
+                                                                      'SIM'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  await TecnologiaTable()
+                                                      .delete(
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'tec_id',
+                                                      widget.editTecnologia
+                                                          ?.tecId,
+                                                    ),
+                                                  );
+                                                  ScaffoldMessenger.of(context)
+                                                      .clearSnackBars();
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Tecnologia apagada com sucesso !',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                ),
+                                                      ),
+                                                      duration: Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                  context.safePop();
+                                                } else {
+                                                  context.safePop();
+                                                }
+                                              },
+                                              text: 'APAGAR',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          color: Colors.white,
+                                                          fontSize: 14.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
@@ -987,8 +1000,7 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -1019,8 +1031,8 @@ class _PgEditTecnologiaWidgetState extends State<PgEditTecnologiaWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).grayBright,
                             image: DecorationImage(

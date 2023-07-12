@@ -1,9 +1,8 @@
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +10,12 @@ import 'pg_add_produto_model.dart';
 export 'pg_add_produto_model.dart';
 
 class PgAddProdutoWidget extends StatefulWidget {
-  const PgAddProdutoWidget({Key? key}) : super(key: key);
+  const PgAddProdutoWidget({
+    Key? key,
+    required this.passCategoria,
+  }) : super(key: key);
+
+  final CategoriaViewRow? passCategoria;
 
   @override
   _PgAddProdutoWidgetState createState() => _PgAddProdutoWidgetState();
@@ -30,6 +34,7 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
     _model.proNomeController ??= TextEditingController();
     _model.proDescricaoController ??= TextEditingController();
     _model.proLogoController ??= TextEditingController();
+    _model.proValorController ??= TextEditingController();
   }
 
   @override
@@ -59,8 +64,8 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 1.0,
-                height: MediaQuery.of(context).size.height * 1.0,
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -72,8 +77,8 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
@@ -84,12 +89,11 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 16.0),
+                                    16.0, 16.0, 16.0, 0.0),
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.05,
+                                      MediaQuery.sizeOf(context).height * 0.05,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).accent1,
                                     borderRadius: BorderRadius.circular(25.0),
@@ -108,7 +112,7 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: Form(
                                   key: _model.formKey,
                                   autovalidateMode: AutovalidateMode.always,
@@ -122,82 +126,39 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.start,
                                           children: [
-                                            FutureBuilder<List<CategoriaRow>>(
-                                              future:
-                                                  CategoriaTable().queryRows(
-                                                queryFn: (q) => q,
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Adicionando Produtos para : ',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                               ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<CategoriaRow>
-                                                    proCategoriaCategoriaRowList =
-                                                    snapshot.data!;
-                                                return FlutterFlowDropDown<
-                                                    String>(
-                                                  controller: _model
-                                                          .proCategoriaValueController ??=
-                                                      FormFieldController<
-                                                          String>(null),
-                                                  options:
-                                                      proCategoriaCategoriaRowList
-                                                          .map((e) => e.catNome)
-                                                          .withoutNulls
-                                                          .toList(),
-                                                  onChanged: (val) => setState(
-                                                      () => _model
-                                                              .proCategoriaValue =
-                                                          val),
-                                                  width: 300.0,
-                                                  height: 50.0,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium,
-                                                  hintText:
-                                                      'Escolha o Categoria...',
-                                                  icon: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  fillColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  elevation: 2.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  borderWidth: 2.0,
-                                                  borderRadius: 8.0,
-                                                  margin: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 4.0, 16.0, 4.0),
-                                                  hidesUnderline: true,
-                                                  isSearchable: false,
-                                                );
-                                              },
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 0.0, 0.0),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  widget.passCategoria?.catNome,
+                                                  'null',
+                                                ),
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -219,29 +180,28 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                   controller:
                                                       _model.proNomeController,
                                                   autofocus: true,
+                                                  textCapitalization:
+                                                      TextCapitalization
+                                                          .characters,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'NOME',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Nome da Produto...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -303,8 +263,7 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -333,29 +292,28 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                   controller: _model
                                                       .proDescricaoController,
                                                   autofocus: true,
+                                                  textCapitalization:
+                                                      TextCapitalization
+                                                          .characters,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'DESCRIÇÃO\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Descrição da Produto...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -417,8 +375,7 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -450,26 +407,22 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'LOGO',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Logo  da Produto...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -531,12 +484,135 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
                                                       .proLogoControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 16.0, 20.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              width: 150.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .transparent,
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 0.0),
+                                                child: TextFormField(
+                                                  controller:
+                                                      _model.proValorController,
+                                                  autofocus: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'VALOR',
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
+                                                    hintText:
+                                                        'Valor do Produto...',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  textAlign: TextAlign.end,
+                                                  keyboardType:
+                                                      const TextInputType
+                                                              .numberWithOptions(
+                                                          decimal: true),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .grayDark,
+                                                  validator: _model
+                                                      .proValorControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -552,113 +628,95 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            FutureBuilder<List<CategoriaRow>>(
-                                              future: CategoriaTable()
-                                                  .querySingleRow(
-                                                queryFn: (q) => q.eq(
-                                                  'cat_nome',
-                                                  _model.proCategoriaValue,
-                                                ),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                      ),
-                                                    ),
-                                                  );
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
                                                 }
-                                                List<CategoriaRow>
-                                                    btnSalvarCategoriaRowList =
-                                                    snapshot.data!;
-                                                final btnSalvarCategoriaRow =
-                                                    btnSalvarCategoriaRowList
-                                                            .isNotEmpty
-                                                        ? btnSalvarCategoriaRowList
-                                                            .first
-                                                        : null;
-                                                return FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if (_model.formKey
-                                                                .currentState ==
-                                                            null ||
-                                                        !_model.formKey
-                                                            .currentState!
-                                                            .validate()) {
-                                                      return;
-                                                    }
-                                                    await ProdutoTable()
-                                                        .insert({
-                                                      'pro_status': true,
-                                                      'pro_nome': _model
-                                                          .proNomeController
-                                                          .text,
-                                                      'pro_descricao': _model
-                                                          .proDescricaoController
-                                                          .text,
-                                                      'pro_logo': _model
-                                                          .proLogoController
-                                                          .text,
-                                                      'pro_categoria':
-                                                          btnSalvarCategoriaRow
-                                                              ?.catId,
-                                                    });
-                                                    setState(() {
-                                                      _model.proNomeController
-                                                          ?.clear();
-                                                      _model
-                                                          .proDescricaoController
-                                                          ?.clear();
-                                                      _model.proLogoController
-                                                          ?.clear();
-                                                    });
-                                                  },
-                                                  text: 'SALVAR',
-                                                  options: FFButtonOptions(
-                                                    height: 40.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(24.0, 0.0,
-                                                                24.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.white,
-                                                          fontSize: 14.0,
-                                                        ),
-                                                    elevation: 3.0,
-                                                    borderSide: BorderSide(
-                                                      color:
+                                                await ProdutoTable().insert({
+                                                  'pro_status': true,
+                                                  'pro_nome': _model
+                                                      .proNomeController.text,
+                                                  'pro_descricao': _model
+                                                      .proDescricaoController
+                                                      .text,
+                                                  'pro_logo': _model
+                                                      .proLogoController.text,
+                                                  'pro_categoria': widget
+                                                      .passCategoria?.catId,
+                                                });
+                                                setState(() {
+                                                  _model.proNomeController
+                                                      ?.clear();
+                                                  _model.proDescricaoController
+                                                      ?.clear();
+                                                  _model.proLogoController
+                                                      ?.clear();
+                                                });
+                                                ScaffoldMessenger.of(context)
+                                                    .clearSnackBars();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Produto adicionado com sucesso !',
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
-                                                      width: 2.0,
+                                                              .titleMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                              ),
                                                     ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
+                                                    duration: Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
                                                   ),
                                                 );
                                               },
+                                              text: 'SALVAR',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          color: Colors.white,
+                                                          fontSize: 14.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
@@ -681,8 +739,7 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -713,16 +770,93 @@ class _PgAddProdutoWidgetState extends State<PgAddProdutoWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).grayBright,
-                            image: DecorationImage(
-                              fit: BoxFit.none,
-                              image: Image.asset(
-                                'assets/images/logo_h_escuro.png',
-                              ).image,
+                          ),
+                          child: FutureBuilder<List<ProdutoRow>>(
+                            future: ProdutoTable().queryRows(
+                              queryFn: (q) => q.eq(
+                                'pro_categoria',
+                                widget.passCategoria?.catId,
+                              ),
                             ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<ProdutoRow> dataTableProdutoRowList =
+                                  snapshot.data!;
+                              return DataTable2(
+                                columns: [
+                                  DataColumn2(
+                                    label: DefaultTextStyle.merge(
+                                      softWrap: true,
+                                      child: Text(
+                                        'NOME',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelLarge,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                                rows: dataTableProdutoRowList
+                                    .mapIndexed((dataTableIndex,
+                                            dataTableProdutoRow) =>
+                                        [
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                dataTableProdutoRow.proNome!,
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium,
+                                              ),
+                                              Text(
+                                                dataTableProdutoRow
+                                                    .proDescricao!,
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmall,
+                                              ),
+                                            ],
+                                          ),
+                                        ].map((c) => DataCell(c)).toList())
+                                    .map((e) => DataRow(cells: e))
+                                    .toList(),
+                                headingRowColor: MaterialStateProperty.all(
+                                  FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                                headingRowHeight: 40.0,
+                                dataRowColor: MaterialStateProperty.all(
+                                  FlutterFlowTheme.of(context).transparent,
+                                ),
+                                dataRowHeight: 36.0,
+                                border: TableBorder(
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                dividerThickness: 1.0,
+                                showBottomBorder: true,
+                                minWidth: 49.0,
+                              );
+                            },
                           ),
                         ),
                       ],

@@ -71,8 +71,8 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 1.0,
-                height: MediaQuery.of(context).size.height * 1.0,
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -84,8 +84,8 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
@@ -96,12 +96,11 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 16.0),
+                                    16.0, 16.0, 16.0, 0.0),
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.05,
+                                      MediaQuery.sizeOf(context).height * 0.05,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).accent1,
                                     borderRadius: BorderRadius.circular(25.0),
@@ -120,7 +119,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: Form(
                                   key: _model.formKey,
                                   autovalidateMode: AutovalidateMode.always,
@@ -259,7 +258,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Roboto',
                                                                   fontSize:
                                                                       14.0,
                                                                 ),
@@ -270,7 +269,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Roboto',
                                                                   fontSize:
                                                                       12.0,
                                                                 ),
@@ -341,7 +340,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       validator: _model
@@ -364,26 +363,22 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'MARCAÇÃO',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Marcação do Material...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -445,8 +440,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -475,29 +469,28 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                   controller:
                                                       _model.matNomeController,
                                                   autofocus: true,
+                                                  textCapitalization:
+                                                      TextCapitalization
+                                                          .characters,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'NOME',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Nome da Material...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -559,8 +552,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -589,29 +581,28 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                   controller: _model
                                                       .matDescricaoController,
                                                   autofocus: true,
+                                                  textCapitalization:
+                                                      TextCapitalization
+                                                          .characters,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'DESCRIÇÃO\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Descrição do Material...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -673,8 +664,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
                                                   validator: _model
@@ -695,7 +685,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                               MainAxisAlignment.end,
                                           children: [
                                             Container(
-                                              width: 200.0,
+                                              width: 150.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -717,26 +707,22 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'VALOR\n',
-                                                    labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14.0,
+                                                        ),
                                                     hintText:
                                                         'Valor do Material...',
-                                                    hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              fontSize: 12.0,
-                                                            ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 12.0,
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -798,10 +784,10 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        fontFamily: 'Roboto',
                                                         fontSize: 12.0,
                                                       ),
+                                                  textAlign: TextAlign.end,
                                                   validator: _model
                                                       .matValorControllerValidator
                                                       .asValidator(context),
@@ -926,6 +912,34 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                       );
                                                     }
 
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .clearSnackBars();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Material alterado com sucesso !',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .titleMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                              ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
                                                     context.safePop();
                                                   },
                                                   text: 'SALVAR',
@@ -946,8 +960,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                             .of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -965,6 +978,113 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                   ),
                                                 );
                                               },
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Apagar'),
+                                                              content: Text(
+                                                                  'Tem certeza que você quer apagar?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: Text(
+                                                                      'SIM'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: Text(
+                                                                      'NÃO'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  await MaterialTable().delete(
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'mat_id',
+                                                      widget
+                                                          .editMaterial?.matId,
+                                                    ),
+                                                  );
+                                                  ScaffoldMessenger.of(context)
+                                                      .clearSnackBars();
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Material apagado com sucesso !',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                ),
+                                                      ),
+                                                      duration: Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                  context.safePop();
+                                                } else {
+                                                  context.safePop();
+                                                }
+                                              },
+                                              text: 'APAGAR',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          color: Colors.white,
+                                                          fontSize: 14.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
@@ -987,8 +1107,7 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: Colors.white,
                                                           fontSize: 14.0,
                                                         ),
@@ -1019,8 +1138,8 @@ class _PgEditMaterialWidgetState extends State<PgEditMaterialWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).grayBright,
                             image: DecorationImage(

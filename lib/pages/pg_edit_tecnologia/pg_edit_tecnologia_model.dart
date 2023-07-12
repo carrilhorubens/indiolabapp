@@ -19,9 +19,6 @@ class PgEditTecnologiaModel extends FlutterFlowModel {
   // State field(s) for tec_codigo widget.
   TextEditingController? tecCodigoController;
   String? Function(BuildContext, String?)? tecCodigoControllerValidator;
-  // State field(s) for tec_logo widget.
-  TextEditingController? tecLogoController;
-  String? Function(BuildContext, String?)? tecLogoControllerValidator;
   // State field(s) for tec_nome widget.
   TextEditingController? tecNomeController;
   String? Function(BuildContext, String?)? tecNomeControllerValidator;
@@ -39,7 +36,6 @@ class PgEditTecnologiaModel extends FlutterFlowModel {
   void dispose() {
     unfocusNode.dispose();
     tecCodigoController?.dispose();
-    tecLogoController?.dispose();
     tecNomeController?.dispose();
     tecDescricaoController?.dispose();
     tecValorController?.dispose();

@@ -31,4 +31,7 @@ class GrupoRow extends SupabaseDataRow {
 
   int? get gruUsuario => getField<int>('gru_usuario');
   set gruUsuario(int? value) => setField<int>('gru_usuario', value);
+
+  int? get gruOrdem => getField<int>('gru_ordem');
+  set gruOrdem(int? value) => setField<int>('gru_ordem', value);
 }

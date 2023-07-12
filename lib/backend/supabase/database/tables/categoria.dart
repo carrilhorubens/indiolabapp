@@ -34,4 +34,7 @@ class CategoriaRow extends SupabaseDataRow {
 
   int? get catUsuario => getField<int>('cat_usuario');
   set catUsuario(int? value) => setField<int>('cat_usuario', value);
+
+  int? get catOrdem => getField<int>('cat_ordem');
+  set catOrdem(int? value) => setField<int>('cat_ordem', value);
 }

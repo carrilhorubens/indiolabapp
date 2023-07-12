@@ -13,6 +13,13 @@ class PgLoginModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for PageView widget.
+  PageController? pageViewController;
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
   // State field(s) for usr_email widget.
   TextEditingController? usrEmailController;
   String? Function(BuildContext, String?)? usrEmailControllerValidator;

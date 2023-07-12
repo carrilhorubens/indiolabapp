@@ -1,9 +1,8 @@
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -13,9 +12,6 @@ class PgAddCategoriaModel extends FlutterFlowModel {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // State field(s) for cat_grupo widget.
-  String? catGrupoValue;
-  FormFieldController<String>? catGrupoValueController;
   // State field(s) for cat_nome widget.
   TextEditingController? catNomeController;
   String? Function(BuildContext, String?)? catNomeControllerValidator;
@@ -25,7 +21,9 @@ class PgAddCategoriaModel extends FlutterFlowModel {
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
+  }
 
   void dispose() {
     unfocusNode.dispose();
